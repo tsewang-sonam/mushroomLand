@@ -11,9 +11,9 @@ Please follow the instructions below and fill in the information requested when 
 
 |               | Information   |
 |:-------------:|:-------------:|
-| Student Name  | name-here     |
-| Student ID    | id-here       |
-| Student Email | email-here    |
+| Student Name  | Tsewang Sonam    |
+| Student ID    | 921911364     |
+| Student Email | tsonam@sfsu.edu   |
 
 
 
