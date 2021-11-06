@@ -1,0 +1,144 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.container2{
+    margin: 150px auto;
+    width: 400px;
+    background-color: rgb(233, 247, 238);
+    padding: 50px;
+    border: .2rem solid #0a250a80;
+    border-radius: .5rem;
+   
+}
+body{
+    background-image:url(https://images.unsplash.com/photo-1496309732348-3627f3f040ee?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80);
+    font-family: poppins;
+    background-size: cover;
+    -webkit-background-size: cover;
+    background-position: center center;
+    min-height: 90%;
+    flex-direction: column;
+    display: flex;
+}
+nav ul li a:hover{
+    color :#658f6b;
+    background: rgb(244, 244, 247);
+
+}
+nav ul li a{
+    text-decoration: none;
+    color:#f5f8f5;
+    padding: 2.5rem;
+    font-weight: lighter;
+    transition: all .7s ease;
+    
+
+}
+nav ul{
+    list-style: none;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+}
+.header{
+    background: #658f6b;
+    overflow: hidden;
+}
+nav{
+    display: grid;
+    grid-template-columns: 8fr 8fr ;
+    align-items:center;
+    width: 1200px;
+    height: 80px;
+    margin:auto;
+   
+}
+
+
+
+
+    button {
+
+        background-color: rgb(175, 225, 228);
+        border-radius: 8px;
+        padding: 6px 18px;
+        font-size: 16px;
+        
+    }
+       
+ button:hover{
+     background-color: rgb(130, 203, 207);
+ }
+ 
+ h3 {
+    font-size: 25px;
+    color:rgb(28, 78, 45);
+    text-shadow: 0.5px 0.5px black;
+    animation: 3s shake infinite alternate;
+ }
+ @keyframes shake{
+     0% {transform: skew(-20deg);}
+     5% {transform: skew(20deg);}
+     10% {transform: skew(-20deg);}
+     15% {transform: skew(20deg);}
+     20% {transform: skew(-20deg);}
+     30% {transform: skew(20deg);}
+     90% {transform: skew(0deg);}
+     100% {transform: skew(0deg);}
+ }
+
+ h2 {
+    font-size: x-large;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:rgb(228, 233, 238); 
+ }
+
+ h4{
+
+    font-size: large;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color:rgb(186, 194, 202);
+   
+ }
+ h6{
+     font-family:cursive;
+    color:rgb(246, 248, 250);
+   
+ }
+
+
+ input {
+     
+     padding: 10px 15px;
+     box-sizing: border-box;
+     border-radius: 10px;
+     border-color:  rgb(142, 231, 120) ;
+ }
+
+ input:focus{
+     outline: none;
+    background-color: rgb(225, 246, 252) !important;
+ }
+ textarea{
+    outline: none;
+    background-color: rgb(225, 246, 252) !important;
+
+ }
+ html{
+     background-color: rgb(204, 240, 181,0.2);
+     background-size: cover;
+     height: 90%;
+    
+ }
+
+ footer{
+
+    background-color: #0005;
+ 
+ }
+
+
+ 
