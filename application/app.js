@@ -1,3 +1,4 @@
+
 const createError = require("http-errors");
 const express = require("express");
 const favicon = require('serve-favicon');
@@ -8,7 +9,9 @@ const handlebars = require("express-handlebars");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 
-const app = express();
+
+
+const app = express()
 
 app.engine(
   "hbs",

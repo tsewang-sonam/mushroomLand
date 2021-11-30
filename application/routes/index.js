@@ -3,7 +3,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'CSC 317 App', name:"[TSEWANG SONAM]" });
+  res.render('login', { title: 'CSC 317 App', name:"[TSEWANG SONAM]" });
+});
+router.get('/login', (req,res, next) => {
+
+  res.render('login');
 });
  router.get('/Registration', (req,res, next) => {
 

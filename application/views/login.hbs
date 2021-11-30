@@ -3,17 +3,18 @@
 
  <div class ="container2">
      
-    <form>
+    <form  method="POST"  action = "/users/login"
+    enctype="application/x-www-form-urlencoded">
     <br></br>
         <h3> <p style = " text-align: center;"> Log in to your account</p>  </h3>
 
     <br></br>
     <p  style = " text-align: center;"> 
     <label > Username</label>  
-    <input type =" text" />
+    <input type =" text"  required name="username">
     <br></br>
     </label> Password </label>  
-    <input type = "password" />
+    <input type = "password" required name="password" >
     </br> </br>
     <button type = "submit" >Submit</button>
     </p>
