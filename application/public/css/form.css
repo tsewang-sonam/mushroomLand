@@ -11,15 +11,24 @@
     border-radius: .5rem;
    
 }
+.container1{
+    margin: 150px auto;
+    width: 300px;
+    background-color: rgb(233, 247, 238);
+    padding: 50px;
+    border: .2rem solid #0a250a80;
+    border-radius: 2rem;
+}
+   
 body{
     background-image:url(https://images.unsplash.com/photo-1496309732348-3627f3f040ee?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80);
     font-family: poppins;
     background-size: cover;
     -webkit-background-size: cover;
     background-position: center center;
-    min-height: 90%;
-    flex-direction: column;
-    display: flex;
+    min-height: 80%;
+    position: relative;
+    min-height: 100vh;;
 }
 nav ul li a:hover{
     color :#658f6b;
@@ -49,14 +58,17 @@ nav ul{
 }
 nav{
     display: grid;
-    grid-template-columns: 8fr 8fr ;
+    grid-template-columns:10fr ;
     align-items:center;
     width: 1200px;
-    height: 80px;
+    height: 90px;
     margin:auto;
    
 }
-
+#search{
+    width: 60px;
+    display: inline-block;
+}
 
 
 
@@ -116,6 +128,7 @@ nav{
      box-sizing: border-box;
      border-radius: 10px;
      border-color:  rgb(142, 231, 120) ;
+     
  }
 
  input:focus{
@@ -137,8 +150,160 @@ nav{
  footer{
 
     background-color: #0005;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
  
  }
 
+ #flash-message{
+     position:fixed;
+     left: 45%;
+     top:20%;
+     transform: translate(-50%,0);
+ }
 
- 
+#flash-message div{
+    text-align: center;
+    color: #f5f8f5;
+    
+}
+label{
+    width: 150px;
+    display: inline-block ;
+}
+
+
+#contain-inside{
+    
+
+    grid-area: content;
+    padding-top: 5rem;
+    padding-bottom:  5rem;
+    padding-left: 5.5rem;
+    padding-right: 5.5rem;
+    display: grid;
+    gap: 2rem 2rem;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-auto-rows: 1fr;
+
+}
+#container {
+    width: 90%;
+    height: 95vh;
+    margin: auto;
+    display: grid;
+    grid-template-rows: 1.fr .5fr .5fr .3fr;
+    grid-template-columns: repeat(4,1fr);
+
+}
+
+.card {
+    display: grid;
+    grid-template-rows: 180px 140px;
+    grid-template-columns: auto;
+    border: 1rem rgb(14, 72, 15);
+    border-radius: .5rem;
+    box-shadow: 1 2px 2px rgb(38, 55, 149);
+}
+.card-img{
+
+    grid-area: 1 / 1 / 2 / 2 ;
+
+}
+div[class=card] > img {
+    height:100%;
+    width:100%
+}
+.card-title{
+    color: rgb(237, 233, 233);
+    font-family:Arial, Helvetica, sans-serif;
+    margin-bottom: .5rem;
+    margin-top: .1rem;
+}
+
+.card-body{
+    grid-area: 2 / 1 / 3 / 2 ;
+    padding: .5rem;
+    background-color: rgb(42, 165, 54);
+    border-radius: 0 0 .2rem .2rem;
+}
+
+div[class = card-body]> a[class=card-button]{
+    text-decoration: silver;
+}
+
+.card-text{
+    color: skyblue;
+     font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+@media screen and (max-width: 1200px) {
+    #contain-inside{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows:  1fr 1fr;
+    }   
+}
+@media screen and (max-width: 800px) {
+    #contain-inside{
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows:  1fr 1fr;
+    }   
+}
+@media screen and (max-width: 500px) {
+    #contain-inside{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows:  1fr 1fr;
+    }   
+}
+
+#post-container{
+   display: grid; 
+   padding: 5px;
+   grid-gap: 10px;
+   grid-template-areas:
+    " image detail"
+    " image comment";
+   grid-template-columns: 1fr 35% ;
+   background: chartreuse;
+}
+
+#info{
+     grid-area: detail;
+     padding: 10px;
+    height: 300px;
+    background: #f5f8f5;
+    
+}
+#message {
+    grid-area: detail;
+     padding: 10px;
+    height: 300px;
+    background: #f5f8f5;
+}
+
+#adjust{
+    width: auto;
+    display: inline-block;
+}
+
+#image-post-title-text{
+    background: #4c29d5;
+    text-align: center;
+}
+#comment-title{
+    background: #4c29d5;
+    text-align: center;
+}
+#comment-box{
+    background-color: rgb(211, 186, 154);
+    color: lightgrey;
+    padding: 1em;
+    font-size: 16px;
+    border: 2px solid transparent;
+    height: 150px;
+    width: 300px;
+
+}

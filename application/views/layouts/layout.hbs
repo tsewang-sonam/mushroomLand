@@ -5,12 +5,40 @@
         <meta name = "viewport" content="width=device-width. initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="/public/css/form.css">
         <title>Login</title>
+        <script defer src = "/public/js/front.js"></script>
     </head>
   <body>
     <div class = "header">
+      {{log this}}
     {{>nav}}
     </div>
+   
+    {{#if (emptyObject messages)}}
+    {{> flashmessage}}
+    {{/if}}
+    
     {{{body}}}
+    
     {{>footer}}
+
+     {{#if logged}}
+    <script>
+        let ele = document.getElementById('logout-button');
+        if(ele){
+          ele.onclick = (even) =>{
+            fetch('/users/logout' , {
+              method : "POST"
+            })
+            .then((data)=> {
+              location.replace('/viewpost');
+            })
+          }
+        }
+    </script>
+    {{/if}}
+ 
+
+ 
+
   </body>
 </html>

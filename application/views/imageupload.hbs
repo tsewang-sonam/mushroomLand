@@ -1,13 +1,13 @@
 
    <div class ="container2">
-<form>
+<form id = "post-image" method="POST" enctype="multipart/form-data" action ="/posts/createPost">
     <h3> <p style = " text-align: center;"> Upload image here</p>  </h3>
     <br></br>
-    <p> Title : <input type="text " /> </p>
+    <p> Title : <input type="text " required name = "title" > </p>
     <br></br>
-    <p> Description :</p> <textarea rows="3" cols=" 50"></textarea>
+    <p> Description :</p> <textarea rows="3" cols=" 50" required name = "description"></textarea>
     <br></br>
-    <p> Upload image : <input type ="file"  id= "image" accept="image/" ></p>
+    <p> Upload image : <input type ="file"  id= "image" accept="image/" required name = "upload"></p>
     <br></br>
     <p> You agree to use policy of uploading the image <input type ="checkbox"/> </p>
     <br></br>

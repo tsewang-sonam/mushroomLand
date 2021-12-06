@@ -1,26 +1,8 @@
 
-<body style="text-align: center;">
 
-<section>
-    <h2> Title </h2> 
-    <h4> You have just uploaded</h4>
-</br>
-</section>
-<section>
-    <h2> Author </h2> 
-    
-    <h4> Brandon's Hello world</h4>
-</br>
-</section>
-<section>
-    <h2> Creation Time </h2> 
-    
-    <h4> 09/24/2021 </h4>
-</br>
-</section>
-
-<section>
-    <img src="http://clipart-library.com/images/8cxzqyEcp.jpg"  alt= "haha">
-</section>
-
-</body>
+    <div id = "contain-inside">
+        {{#each results}}
+        {{> card this}}
+     {{/each}}
+    </div>
+   

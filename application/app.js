@@ -5,9 +5,16 @@ const favicon = require('serve-favicon');
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+var sessions = require('express-session');
+var mysqlSession = require('express-mysql-session')(sessions);
+var flash = require('express-flash');
+
+
 const handlebars = require("express-handlebars");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
+const postsRouter = require("./routes/posts");
+const { allowedNodeEnvironmentFlags } = require("process");
 
 
 
@@ -20,9 +27,34 @@ app.engine(
     partialsDir: path.join(__dirname, "views/partials"), // where to look for partials
     extname: ".hbs", //expected file extension for handlebars files
     defaultLayout: "layout", //default layout for app, general template for all pages in app
-    helpers: {}, //adding new helpers to handlebars for extra functionality
+    helpers: {
+
+      emptyObject: (obj)=>{
+        return !(obj.constructor === Object && Object.keys(obj).length == 0);
+      }
+    }, //adding new helpers to handlebars for extra functionality
   })
 );
+
+var mysqlSessionStore = new mysqlSession({/*using defualt options */}, require('./conf/database'));
+
+app.use(sessions({
+  kry: "csid",
+  secret: "very secret",
+  store:  mysqlSessionStore,
+  resave: false,
+  saveUninitialized: false
+}))
+
+app.use(flash());
+
+app.use((req,res, next)=>{
+  console.log(req.session);
+  if(req.session.username){
+    res.locals.logged = true;
+  }
+  next();
+})
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -39,7 +71,7 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter); // route middleware from ./routes/index.js
 app.use("/users", usersRouter); // route middleware from ./routes/users.js
-
+app.use("/posts",postsRouter);
 
 /**
  * Catch all route, if we get to here then the 
