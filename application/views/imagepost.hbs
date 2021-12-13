@@ -1,7 +1,6 @@
-<div id = "post-container">
-    <img id="image-post" src ="/{{currentPost.path}} ">
+<div class = "post-container">
     <div id ="info-message">
-        <div id ="info">
+       
             <header id =" image-post-title">
                 <h2 id ="image-post-title-text">{{currentPost.title}}
                 </h2>
@@ -12,22 +11,81 @@
             <div id ="image-post-date" class="info-tags"><label id ="adjust">   Posted on : {{currentPost.created}}</label>{</div>
             <br></br>
             <div id ="image-post-description" class="info-tags"><label id ="adjust">   Description : {{currentPost.description}}</label></div>
+           <br></br>
+            <img id="image-post" class = "img-fluid" src ="/{{currentPost.path}} ">
+    
         </div>
-        <div id ="message">
-             <br></br>
-            <header id ="comment-title">
-                <h2> Comment</h2>
-            </header>
-            <div id = "message-list">
+        
+
+<header id ="comment-title2">
+                <h2> Comments</h2>
+<div id ="message">
+    
+     <div id ="message1-">
+         <div id ="message-">
+                <strong class= "author">@Sonam</strong>
+                <span class =" date-posted"> 10 minutes</span>
+                <div class = "comment-text">This is a post made by cis 317 student for first Webpage </div>
+                </strong>
             </div>
-        <br>
+         
+       </div>      
+</div>
+        
         
         <div id ="comment-box1">
-            <textarea id="comment-box"></textarea>
-            <i id="comment-box-button" class="hello" aria-hidden="true" style="text-align: center;"></i>
+
+ {{#each currentPost.comments}} 
+          {{>comment this}}
+          {{/each}}
+             <header id ="comment-title">
+                <h2> leave comment</h2>
+            </header>
+            <br>
+             <span style="padding-right: 80px;"></span>
+            <textarea placeholder="Leave your comments here" id="comment-box" class="learn" ></textarea>
+           
+            <button id= "pressed">Enter</button>
         </div>
-        </div>
+        
     </div>
 
     
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event)  =>{
+            document.querySelectorAll('span[class=date-posted]').forEach((postedDate) =>{
+                postedDate.textContent = new Date(postedDate.textContent).toLocaleString();
+            });
+    })
+
+    document.getElementById('pressed').onclick =(event)=>{
+        let commentText = document.getElementById('pressed').value;
+        let postId = document.location.pathname.match(/\d+/g).map(Number)[0];
+        if(!commentText){
+            return;
+        }
+        let fetchOption ={
+            method: "POST",
+            headers: {
+                "Content-Type:": "Application/json"
+            },
+            body: JSON.stringify({
+                comment:commentText,
+                postId,postId
+            })
+        }
+            fetch('/comments/create', fetchOption)
+            .then((response)=> response.json())
+            .then((data)=>{
+                console.log(data);
+            })
+            .catch(err => console.log(err));
+
+        }
+
+            
+
+    
+</script>

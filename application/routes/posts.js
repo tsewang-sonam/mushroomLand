@@ -1,14 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../conf/database');
 const {successPrint, errorPrint} = require ("../helpers/debug/debugprinters");
 var sharp = require('sharp');
 var multer = require('multer');
 var crypto = require('crypto');
 var PostError = require('../helpers/error/PostError');
-const { route } = require('.');
 const { RequestHeaderFieldsTooLarge } = require('http-errors');
-
+var PostModel = require('../models/Posts');
 var storage = multer.diskStorage({
     destination: function(req, file, cb){
 
@@ -34,12 +32,11 @@ router.post('/createPost',uploader.single("upload"), (req, res, next)=> {
     .resize(200)
     .toFile(destinationOfThumbnail)
     .then(() => {
-        let baseSQL = ' INSERT INTO post (title, description, path, thumbnail, created, fk_userId) VALUE(?,?,?,?, now(), ?);;'; 
-        return db.execute(baseSQL,[title,description, fileUploaded, destinationOfThumbnail,fk_userId]);
+        return PostModel.create(title,description, fileUploaded, destinationOfThumbnail,fk_userId);
 
     })
-      .then(([results, fields])=> {
-      if(results && results.affectedRows){
+      .then((postWasCreated) => {
+      if(postWasCreated){
             req.flash('success', " Your Post was Created");
             res.redirect('/viewpost');
 
@@ -63,45 +60,38 @@ router.post('/createPost',uploader.single("upload"), (req, res, next)=> {
 
 });
 
-router.get("/search", (req,res,next)=> {
-    let searchTerm = req.query.search;
+router.get("/search", async (req,res,next)=> {
+   try{ let searchTerm = req.query.search;
     if(!searchTerm){
         res.send({
-            resultsStatus: " Information",
             message: " no input given",
             results:[]
 
         });
     }else{
-        let baseSQL=" SELECT  id, title, description, thumbnail, concat_ws(' ',title, description) AS haystack \
-        FROM post	\
-        HAVING haystack like ? ;";
-        let sqlReadySearchTerm = "%"+searchTerm+"%";
-        db.execute(baseSQL, [sqlReadySearchTerm])
-        .then(([results, fields]) => {
-            if(results && results.length){
+        let results = await PostModel.search (searchTerm);
+            if(results.length){
                 res.send({
-                    resultsStatus: "info",
+                  
                     message: `${results.lenght} results Here`,
                     results: results
                 });
 
         }else{
-             db.query('SELECT id, title,description,thumbnail, created FROM post ORDER BY created DESC LIMIT 8')
-             .then(([results, fields])=> {
+            let results = await PostModel.getRecentPosts(8);
                  res.send({
-                    resultsStatus: " Information",
+                  
                     message: " Hello",
                      results: results
                  });
-             })
+             }
         }
 
-        })
-        .catch((err) => next(err));
-            
         }
+        catch(err) { 
+            next(err);
+        }
+    
     });
-
 
 module.exports = router;
